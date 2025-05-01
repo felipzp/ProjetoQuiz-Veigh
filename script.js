@@ -2,17 +2,6 @@
 
 
 
-
-
-const nome = localStorage.getItem('username');
-
-if (nome) {
-    const saudacao = document.getElementById('saudacao');
-    saudacao.textContent = 'Olá, ' + nome;
-}
-
-
-
 function cadastro() {
     var nome = ipt_user.value;
     var email = ipt_email.value;
