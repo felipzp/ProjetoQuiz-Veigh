@@ -306,4 +306,14 @@ section {
     margin-right: auto;
     line-height: 1.6;
 }
+.user-icon {
+    color: #ffffff;
+    font-size: 2.4rem;
+    margin-left: 2rem;
+    transition: color 0.3s ease;
+}
+
+.user-icon:hover {
+    color: var(--main--color);
+}
 
