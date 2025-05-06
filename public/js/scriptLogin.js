@@ -6,6 +6,6 @@ function login() {
         alert("Por favor, preencha todos os campos.");
     } else {
         alert("Login realizado com sucesso!");
-        window.location.href = "index.html  "
+        window.location.href = "indexlogado.html"
     }
 }
