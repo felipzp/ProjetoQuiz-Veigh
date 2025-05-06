@@ -6,8 +6,8 @@
 }
 
 body {
-    background-image: url(./fundoveigh.png);
-    background: url(./fundoveigh.png) no-repeat center center/cover;
+    background-image: url(../public/assets/fundoveigh.png);
+    background: url(../public/assets/fundoveigh.png) no-repeat center center/cover;
     background-attachment: fixed;
     background-size: cover;
     background-position: center 30%;
