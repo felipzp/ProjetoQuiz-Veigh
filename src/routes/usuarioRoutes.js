@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var usuarioController = require("../controllers/usuarioController");
+const express = require('express');
+const router = express.Router();
 
-router.post("/autenticar", usuarioController.autenticar);
-router.post("/cadastrar", usuarioController.cadastrar);
+router.get('/', (req, res) => {
+    res.send('Rota de usuários funcionando!');
+});
 
 module.exports = router;

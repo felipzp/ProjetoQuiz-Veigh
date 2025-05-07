@@ -1,8 +1,11 @@
-var express = require("express");
-var router = express.Router();
-var resultadoController = require("../controllers/resultadoController");
+const express = require('express');
+const router = express.Router();
 
-router.post("/salvar", resultadoController.salvarResultado);
-router.get("/buscar/:idUsuario", resultadoController.buscarResultados);
+router.post('/registrar', (req, res) => {
+    const { idUsuario, pontuacao } = req.body;
+
+    console.log(`Pontuação recebida: ${pontuacao} do usuário ${idUsuario}`);
+    res.status(200).send('Resultado registrado com sucesso');
+});
 
 module.exports = router;
