@@ -26,8 +26,10 @@
                 <a href="#hits">Hits</a>
                 <a href="#curious">Curiosidades</a>
                 <a href="#aboutme">Sobre mim</a>
-                <a href="cadastro.html"><span class="cadastro">Cadastro</span></a>
-                <a href="login.html">Login</a>
+                <span class="cadastro" id="boasVindas">
+                    <i class="fas fa-user"></i> Olá, Felipe
+                  </span>
+                  
             </nav>
 
         
@@ -196,8 +198,19 @@
 
                 </div>
 
-           <script src="../js/index.js"></script>
+                <script>
+                 window.addEventListener('load', function () {
+  const nome = localStorage.getItem('nomeUsuario');
+  if (nome) {
+    document.getElementById('boasVindas').innerHTML = `<i class="fas fa-user"></i> Olá, ${nome}`;
+  }
+});
 
-</body>
+                </script>
+                
+                
 
-</html>
+            </body>
+            
+            </html>
+            
