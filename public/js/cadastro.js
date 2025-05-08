@@ -1,5 +1,5 @@
 function cadastro() {
-    var nome = document.getElementById('nome_usuario').value;
+    var nome = document.getElementById('nome').value;
     var email = document.getElementById('email').value;
     var senha = document.getElementById('senha').value;
     var senhaB = document.getElementById('senhaB').value;
