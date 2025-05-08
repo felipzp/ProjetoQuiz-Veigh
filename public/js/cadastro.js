@@ -1,8 +1,8 @@
 function cadastro() {
-    var nome = ipt_user.value;
-    var email = ipt_email.value;
-    var senha = ipt_senha.value;
-    var senhaB = ipt_senhaB.value;
+    var nome = document.getElementById('nome_usuario').value;
+    var email = document.getElementById('email').value;
+    var senha = document.getElementById('senha').value;
+    var senhaB = document.getElementById('senhaB').value;
 
     if (nome == "") {
         alert("Preencha o campo de usuário.");
@@ -20,11 +20,7 @@ function cadastro() {
         alert("As senhas não coincidem.");
     } else {
         alert("Cadastro realizado com sucesso!");
-
-        // Salva o nome do usuário no localStorage
         localStorage.setItem('nomeUsuario', nome);
-
-        // Redireciona para a página de login
         window.location.href = "login.html";
     }
 }

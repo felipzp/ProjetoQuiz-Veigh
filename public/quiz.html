@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="stylesheet" href="../public/css/quiz.css">
 </head>
 
 
-<body onload="onloadEsconder()">
+<body onload="onloadEsconder()">    
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -318,41 +318,36 @@
     }
 
     function finalizarJogo() {
-    // Código de cálculo de pontuação final
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-    // Envio do resultado para o backend (API)
-    const idUsuario = 1; // Substitua pelo id real do usuário
-    const resultadoQuiz = {
-        acertos: certas,
-        erros: erradas,
-        pontuacaoFinal: pontuacaoFinal
-    };
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Parece que você não conhece o Veigh :("
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Não é fã, mas sabe um pouco pelo menos.., ainda não é fanático"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "Uau!, Você entrou para turma de fanáticos pelo Veigh, parabéns!"
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
 
-    fetch('/api/resultados', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ idUsuario, resultadoQuiz })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Resultado salvo com sucesso', data);
-    })
-    .catch(error => {
-        console.error('Erro ao salvar resultado', error);
-    });
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
-    // Código para exibir a mensagem final
-    document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
-    document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
-    document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
 
-    document.getElementById('jogo').classList.add("text-new-gray");
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-    btnProx.disabled = true;
-    btnSubmeter.disabled = true;
-    btnTentarNovamente.disabled = false;
-}
+        document.getElementById('jogo').classList.add("text-new-gray")
 
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
+
+    }
 </script>
