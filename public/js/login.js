@@ -22,18 +22,19 @@ function login() {
             senhaServer: senhaVar
         })
     }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!");
+        console.log("ESTOU NO THEN DO login()!");
 
         if (resposta.ok) {
-            console.log(resposta);
-
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
 
+                // Salvando no sessionStorage
+                sessionStorage.setItem("EMAIL_USUARIO", json.email);
+                sessionStorage.setItem("NOME_USUARIO", json.nome);
+                sessionStorage.setItem("ID_USUARIO", json.id);
+
+                // Redirecionando para a página logada
                 window.location = "/indexlogado.html";
             });
 

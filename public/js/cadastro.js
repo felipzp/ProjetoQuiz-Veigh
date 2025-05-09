@@ -1,9 +1,30 @@
 function cadastrar() {
-    var nomeVar = nome.value;
-    var emailVar = email.value;
-    var senhaVar = senha.value;
-    var senhaBVar = senhaB.value;
+    var nomeVar = document.getElementById("nome").value.trim();
+    var emailVar = document.getElementById("email").value.trim();
+    var senhaVar = document.getElementById("senha").value;
+    var senhaBVar = document.getElementById("senhaB").value;
 
+    if (nomeVar.length < 3) {
+        alert("O nome deve ter pelo menos 3 caracteres.");
+        return;
+    }
+
+    if (emailVar == "" || !emailVar.includes("@") || !emailVar.includes(".")) {
+        alert("Por favor, insira um email válido.");
+        return;
+    }
+
+    if (senhaVar.length < 6) {
+        alert("A senha deve ter no mínimo 6 caracteres.");
+        return;
+    }
+
+    if (senhaVar !== senhaBVar) {
+        alert("As senhas não coincidem.");
+        return;
+    }
+
+    // Envio se passou por tudo
     fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
@@ -25,7 +46,7 @@ function cadastrar() {
             alert("Houve um erro ao tentar realizar o cadastro!");
         }
     })
-    .catch(function (resposta) {
-        console.log("#ERRO: ${resposta}");
+    .catch(function (erro) {
+        console.log("#ERRO: ", erro);
     });
 }

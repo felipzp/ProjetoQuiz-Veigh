@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trapstar Veigh</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <head>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
 
     <link rel="stylesheet" href="../css/logado.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +30,10 @@
                 <a href="#hits">Hits</a>
                 <a href="#curious">Curiosidades</a>
                 <a href="#aboutme">Sobre mim</a>
-                <span class="cadastro" id="boasVindas"></span>
+             <div id="boasVindas">
+    <i class="fas fa-user"></i> Olá, <span id="nomeUsuario"></span>!
+</div>
 
-                    <i class="fas fa-user"></i> Olá, Felipe
                 </span>
 
             </nav>
@@ -44,7 +49,7 @@
                 <h3>Trapstar Veigh</h3>
                 <p>Conheça mais sobre Thiago Veigh, um dos maiores nomes do trap nacional! <br> Descubra curiosidades
                     incríveis sobre sua trajetória e mergulhe no universo do Veigh como nunca antes!</p>
-                <a href="#quiz" id="startQuiz" class="btn" onclick="quiz()">Iniciar Quiz</a>
+                 <a href="#quiz" id="startQuiz" class="btn" onclick="quiz()">Iniciar Quiz</a>
             </div>
         </section>
     </div>
@@ -199,15 +204,22 @@
 
                 </div>
 
-                <script>
-                    window.addEventListener('load', function () {
-                        const nome = localStorage.getItem('nomeUsuario');
-                        if (nome) {
-                            document.getElementById('boasVindas').innerHTML = `<i class="fas fa-user"></i> Olá, ${nome}`;
-                        }
-                    });
+               <script>
+    window.onload = function () {
+        const nome = sessionStorage.getItem("NOME_USUARIO");
+        if (nome) {
+            document.getElementById("nomeUsuario").innerText = nome;
+        } else {
+            document.getElementById("nomeUsuario").innerText = "usuário";
+        }
 
-                </script>
+        
+    }
+    function quiz() {
+        window.location.href = 'quiz.html'
+        
+    }
+</script>
 
 
 
