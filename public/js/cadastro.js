@@ -1,26 +1,31 @@
 function cadastrar() {
-    var nome = document.getElementById('nome').value;
-    var email = document.getElementById('email').value;
-    var senha = document.getElementById('senha').value;
-    var senhaB = document.getElementById('senhaB').value;
+    var nomeVar = nome.value;
+    var emailVar = email.value;
+    var senhaVar = senha.value;
+    var senhaBVar = senhaB.value;
 
-    if (nome == "") {
-        alert("Preencha o campo de usuário.");
-    } else if (email == "") {
-        alert("Preencha o e-mail.");
-    } else if (!email.includes("@") || !email.includes(".") || email.length < 5) {
-        alert("Digite um e-mail válido.");
-    } else if (senha == "") {
-        alert("Preencha a senha.");
-    } else if (senha.length < 6) {
-        alert("A senha deve ter pelo menos 6 caracteres.");
-    } else if (senhaB === "") {
-        alert("Confirme a senha.");
-    } else if (senha !== senhaB) {
-        alert("As senhas não coincidem.");
-    } else {
-        alert("Cadastro realizado com sucesso!");
-        localStorage.setItem('nomeUsuario', nome);
-        window.location.href = "login.html";
-    }
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+            window.location = "login.html";
+        } else {
+            alert("Houve um erro ao tentar realizar o cadastro!");
+        }
+    })
+    .catch(function (resposta) {
+        console.log("#ERRO: ${resposta}");
+    });
 }
