@@ -2,6 +2,8 @@
 
 
 
+
+
 :root {
     --main--color: #d3ad7f;
     --black: #13131a;
@@ -17,6 +19,7 @@
     outline: none;
     border: none;
     text-decoration: none;
+   
     transition: 0.2s linear;
 }
 
@@ -51,12 +54,13 @@ section {
 
 }
 .cadastro{
+
     margin-left: 200px;
 }
-.navbar a {
 
-    margin: 3.5rem;
-    font-size: 2.1rem;
+.navbar a {
+    margin: 0 2.5rem;
+    font-size: 1.8rem;
     color: #ffffff;
 }
 
@@ -311,31 +315,37 @@ section {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;}
-
-/* Ajuste da navbar */
-.navbar {
-    display: flex;
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: space-between; /* Garante que os itens fiquem nas extremidades */
-    padding: 1rem 2rem;
-    background-color: var(--bg); /* Ou qualquer cor que você esteja usando para a navbar */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 99;
+    line-height: 1.6;
+}
+.cad {
+    color: #ffffff;
+    font-size: 2.4rem;
+    margin-left: 2rem;
+    transition: color 0.3s ease;
+}
+.login {
+    color: #ffffff;
+    font-size: 2.4rem;
+    margin-left: 2rem;
+    transition: color 0.3s ease;
+   
 }
 
-/* Saudação dentro da navbar */
 #boasVindas {
     font-size: 24px;
     font-weight: bold;
     color: #fff;
-    text-align: left; /* Alinha o texto à esquerda dentro da navbar */
+    text-align: left; 
 }
 
 #boasVindas i {
+    margin-left: 890px;
     margin-right: 8px;
     font-size: 18px;
+}
+#boasVindas:hover {
+    color: var(--main--color);
+    border-bottom: 0rem solid var(--main--color);
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
 }

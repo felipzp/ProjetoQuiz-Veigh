@@ -15,7 +15,6 @@
     outline: none;
     border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: 0.2s linear;
 }
 
@@ -325,7 +324,3 @@ section {
     transition: color 0.3s ease;
    
 }
-
-
-
-
