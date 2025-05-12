@@ -2,6 +2,10 @@
 
 /* Reset e base */
 body {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url(../assets/fundoveigh.png) no-repeat center center fixed;
+    background-size: cover;
+    background-position: center 30%;
     background-color: #13131a;
     color: #d3ad7f;
     font-family: Arial, sans-serif;
@@ -20,6 +24,7 @@ body {
 
 /* Botão iniciar */
 #btnIniciarQuiz {
+    margin: 250px;
     background-color: #d3ad7f;
     color: #13131a;
     border: none;
@@ -30,12 +35,14 @@ body {
     cursor: pointer;
     margin-bottom: 12px;
 }
+
 #btnIniciarQuiz:hover {
     background-color: #b98f64;
 }
 
 /* Containers principais */
-#pontuacao, #jogo {
+#pontuacao,
+#jogo {
     background-color: #1a1a22;
     border: 1px solid #d3ad7f;
     border-radius: 8px;
@@ -73,6 +80,7 @@ body {
     cursor: pointer;
     margin-top: 4px;
 }
+
 #botoes button:hover {
     background-color: #b98f64;
 }
@@ -117,11 +125,15 @@ body {
 
 /* Responsivo */
 @media screen and (max-width: 480px) {
-    #pontuacao, #jogo {
+
+    #pontuacao,
+    #jogo {
         width: 95%;
         padding: 8px;
     }
-    #btnIniciarQuiz, #botoes button {
+
+    #btnIniciarQuiz,
+    #botoes button {
         font-size: 12px;
         padding: 6px;
     }
