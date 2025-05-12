@@ -20,13 +20,9 @@ create table resultados_quiz
    ( id int primary key auto_increment,
     acertos int not null,
     erros int not null,
-    dtHora datetime,
 	fk_usuario int not null,
     foreign key (fk_usuario) references usuarios(id));
 
-create table estatisticas_gerais (
-    id int primary key auto_increment,
-    media_geral_acertos decimal(5,2) not null);
 select * from usuarios;	
 
 
