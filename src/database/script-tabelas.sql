@@ -55,11 +55,3 @@ select * from usuarios
     on r.fk_usuario = usuarios.idUsuario
 		join perguntas_error p 
 			on r.fkPerguntas = p.idPergunta;
-
-
-
-
-
-
-
-
