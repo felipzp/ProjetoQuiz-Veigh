@@ -1,11 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <title>Dashboard do Quiz</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url(../assets/fundoveigh.png) no-repeat center center fixed;
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .kpi-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .kpi {
+      padding: 20px;
+      width: 200px;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .kpi.destacado {
+      border-color: #333;
+      background-color: #e0ffe0;
+      box-shadow: 0 0 10px #999;
+    }
+
+    .fraco {
+      color: red;
+    }
+
+    .medio {
+      color: orange;
+    }
+
+    .excelente {
+      color: green;
+    }
+
+    canvas {
+      max-width: 500px;
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
-    <h1>Olá</h1>
+
+  <h1 style="color: aliceblue;">Resultado do Quiz</h1>
+
+  <div class="kpi-container">
+    <div class="kpi fraco" id="kpi-fraco">
+      0 a 3 acertos<br>
+      Você pode melhorar!
+    </div>
+    <div class="kpi medio" id="kpi-medio">
+      4 a 7 acertos<br>
+      Bom desempenho!
+    </div>
+    <div class="kpi excelente" id="kpi-excelente">
+      8 a 10 acertos<br>
+      Excelente resultado!
+    </div>
+  </div>
+
+  <canvas id="graficoResultado"></canvas>
+
+  <script>
+    const acertos = 6;
+    const erros = 4;
+
+    if (acertos <= 3) {
+      document.getElementById("kpi-fraco").classList.add("destacado");
+    } else if (acertos <= 7) {
+      document.getElementById("kpi-medio").classList.add("destacado");
+    } else {
+      document.getElementById("kpi-excelente").classList.add("destacado");
+    }
+
+    const ctx = document.getElementById('graficoResultado').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Acertos', 'Erros'],
+        datasets: [{
+          label: 'Desempenho',
+          data: [acertos, erros],
+          backgroundColor: ['#d3ad7f', 'gray']
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: 'white'
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: 'white'
+            },
+            grid: {
+              color: 'rgba(255,255,255,0.2)' // linhas verticais claras
+            }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: 'white'
+            },
+            grid: {
+              color: 'rgba(255,255,255,0.2)' // linhas horizontais claras
+            }
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
