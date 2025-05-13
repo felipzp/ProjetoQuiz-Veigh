@@ -21,13 +21,46 @@ create table resultados_quiz
     acertos int not null,
     erros int not null,
 	fk_usuario int not null,
-    foreign key (fk_usuario) references usuarios(id));
+    fkPerguntas int not null,
+    foreign key (fk_usuario) references usuarios(id),
+    foreign key (fkPerguntas) references perguntas_error(id));
+    
+create table perguntas_error
+( id int primary key auto_increment,
+	pergunta varchar(85) not null,
+	resposta varchar(45) not null);
+    
+insert into perguntas_error (pergunta, resposta) values
+('Qual a música mais viral do artista Veigh?', 'Alternativa A'),
+('Qual o nome correto do artista?', 'Alterativa D'),
+('Quantos anos veigh tem?', 'Alterativa B'),
+('Qual foi o primeiro álbum lançado de Veigh?', 'Alterativa B'),
+('Qual o nome da gravadora em que o Veigh está inserido?', 'Alterativa D'),
+('Qual dessas músicas é um feat com o Matuê', 'Alterativa D'),
+('Qual dessas falas são características do Veigh?', 'Alterativa A'),
+('Qual frase faz parte de uma música do Veigh?', 'Alterativa A'),
+('Qual dessas músicas, possui Feat Gringo?', 'Alterativa C'),
+('Em que ano foi lançado a faixa Buchanans?', 'Alterativa B');
 
-select * from usuarios;	
+
+select * from resultados_quiz;	
+select * from perguntas_error;	
+
+select u.nome,
+r.acertos,
+r.erros,
+p.pergunta,
+p.resposta
+from usuarios u
+	join resultados_quiz r
+    on r.fk_usuario = u.id
+		join perguntas_error p 
+			on r.fkPerguntas = p.id;
 
 
 
-desc usuarios;
+
+
 
 
 
