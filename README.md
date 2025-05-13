@@ -38,3 +38,16 @@ Curiosidades:
 
 
 
+
+
+
+Linguagens Utilizadas:
+
+![images](https://github.com/user-attachments/assets/d889d118-5193-47e0-863a-c950f2b50cf1)
+
+
+![images (1)](https://github.com/user-attachments/assets/b7e08ab5-45e0-4518-99c3-f4f271eec6cf)
+
+![css3](https://github.com/user-attachments/assets/a5699cf4-b282-44c5-ad36-42a5d93a2ab9)
+
+
