@@ -45,9 +45,9 @@ p.pergunta,
 p.resposta
 from usuarios u
 	join resultados_quiz r
-    on r.fk_usuario = u.id
+    on r.fk_usuario = u.idUsuario
 		join perguntas_error p 
-			on r.fkPerguntas = p.id;
+			on r.fkPerguntas = p.idPergunta;
 
 
 select * from usuarios
