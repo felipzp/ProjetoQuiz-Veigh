@@ -14,3 +14,10 @@ Tela inicial do meu site:
 
 
 ![Captura de tela 2025-05-13 123822](https://github.com/user-attachments/assets/82d12ada-f17d-4de1-b05b-5e07941f1ce8)
+
+
+Sobre Mim: 
+
+
+![Captura de tela 2025-05-13 123942](https://github.com/user-attachments/assets/ca9a5ce4-d109-4277-8cbd-3baa3f7d8f81)
+
