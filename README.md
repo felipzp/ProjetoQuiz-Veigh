@@ -22,3 +22,8 @@ Sobre Mim:
 
 ![Captura de tela 2025-05-13 123942](https://github.com/user-attachments/assets/ca9a5ce4-d109-4277-8cbd-3baa3f7d8f81)
 
+Sobre o Artista:
+
+
+
+
