@@ -25,5 +25,12 @@ Sobre Mim:
 Sobre o Artista:
 
 
+![Captura de tela 2025-05-13 125846](https://github.com/user-attachments/assets/76486579-0e13-4f21-9e2c-6643d7c8220b)
+
+Hits:
+
+Curiosidades
+![Captura de tela 2025-05-13 130017](https://github.com/user-attachments/assets/a8d56499-53bc-4126-a597-b8dd6014aa14)
+
 
 
