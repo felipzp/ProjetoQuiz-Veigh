@@ -29,7 +29,11 @@ Sobre o Artista:
 
 Hits:
 
-Curiosidades
+
+![Captura de tela 2025-05-13 130120](https://github.com/user-attachments/assets/0efe5d9f-c05e-4bde-b860-16ae69a4192e)
+
+Curiosidades:
+
 ![Captura de tela 2025-05-13 130017](https://github.com/user-attachments/assets/a8d56499-53bc-4126-a597-b8dd6014aa14)
 
 
