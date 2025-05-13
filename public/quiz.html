@@ -357,6 +357,30 @@
    
         window.location.href = "dashboard.html";
     }
+    function quiz_inserido() {
+         fetch("/usuarios/quiz_inserido", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            corretaServer: corretaVar,
+            erradoServer: erradaVar,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert("Resultado inserido");
+        } else {
+            alert("Houve um erro ao tentar realizar a inserção");
+        }
+    })
+    .catch(function (erro) {
+        console.log("#ERRO: ", erro);
+    });
+    }
 
 
 
