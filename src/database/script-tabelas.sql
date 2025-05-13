@@ -1,32 +1,24 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql server
-*/
-
 create database pjindividual;
 
 use pjindividual;
 
 create table usuarios 
-    (id int primary key auto_increment ,
+    (idUsuario int primary key auto_increment ,
     nome varchar(45) not null,
     email varchar(45) unique not null,
     senha varchar(45) not null);
     
 create table resultados_quiz 
-   ( id int primary key auto_increment,
+   ( idResultado int primary key auto_increment,
     acertos int not null,
     erros int not null,
 	fk_usuario int not null,
     fkPerguntas int not null,
-    foreign key (fk_usuario) references usuarios(id),
-    foreign key (fkPerguntas) references perguntas_error(id));
+    foreign key (fk_usuario) references usuarios(idUsuario),
+    foreign key (fkPerguntas) references perguntas_error(idPergunta));
     
 create table perguntas_error
-( id int primary key auto_increment,
+( idPergunta int primary key auto_increment,
 	pergunta varchar(85) not null,
 	resposta varchar(45) not null);
     
@@ -56,6 +48,13 @@ from usuarios u
     on r.fk_usuario = u.id
 		join perguntas_error p 
 			on r.fkPerguntas = p.id;
+
+
+select * from usuarios
+	join resultados_quiz r
+    on r.fk_usuario = usuarios.idUsuario
+		join perguntas_error p 
+			on r.fkPerguntas = p.idPergunta;
 
 
 
