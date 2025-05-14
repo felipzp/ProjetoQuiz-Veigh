@@ -10,10 +10,10 @@ create table usuarios
     
 create table resultados_quiz 
    ( idResultado int primary key auto_increment,
-    acertos int not null,
-    erros int not null,
-	fk_usuario int not null,
-    fkPerguntas int not null,
+    certas int,
+    erradas int ,
+	fk_usuario int ,
+    fkPerguntas int ,
     foreign key (fk_usuario) references usuarios(idUsuario),
     foreign key (fkPerguntas) references perguntas_error(idPergunta));
     
@@ -33,7 +33,6 @@ insert into perguntas_error (pergunta, resposta) values
 ('Qual frase faz parte de uma música do Veigh?', 'Alterativa A'),
 ('Qual dessas músicas, possui Feat Gringo?', 'Alterativa C'),
 ('Em que ano foi lançado a faixa Buchanans?', 'Alterativa B');
-
 
 
 
