@@ -34,12 +34,12 @@ function cadastrar(nome, email, senha) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }*/
-function quiz_inserido(fk_usuario, fkPerguntas, certas, erradas) {
-    console.log("ACESSEI O USUARIO MODEL \n\n function quiz_inserido():", fk_usuario, fkPerguntas, certas, erradas);
+function quiz_inserido(correta, errado, fk_usuario, fkPerguntas) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function quiz_inserido():", fk_usuario, fkPerguntas, correta, errado);
 
     var instrucaoSql = `
-        INSERT INTO resultados_quiz (fk_usuario, fkPerguntas, certas, erradas)
-        VALUES ('${fk_usuario}', '${fkPerguntas}', '${certas}', '${erradas}');
+        INSERT INTO resultados_quiz (certas, erradas, fk_usuario, fkPerguntas)
+        VALUES (${correta}, ${errado}, ${fk_usuario}, ${fkPerguntas});
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

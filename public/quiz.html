@@ -61,7 +61,7 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="quiz_inserido()" id="btnSubmeter">Enviar resposta</button>
+                <button onclick="submeter()" id="btnSubmeter">Enviar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
@@ -245,63 +245,65 @@
 
     }
 
-    function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+   function avancar() {
+    btnProx.disabled = true;
+    btnSubmeter.disabled = false;
 
-        desmarcarRadioButtons()
+    desmarcarRadioButtons(); // Desmarcar as opções selecionadas
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else {
-            finalizarJogo()
-        }
-        limparCoresBackgroundOpcoes()
+    // Incrementa a questão atual
+    numeroDaQuestaoAtual++;
+
+    // Verifica se não é a última questão
+    if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);  // Atualiza a próxima questão
+    } else {
+        finalizarJogo();  // Caso seja a última questão
     }
+
+    limparCoresBackgroundOpcoes();  // Limpa as cores de fundo das opções
+}
+
 
     function tentarNovamente() {
         // atualiza a página
         window.location.reload()
     }
 
-    function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+   function checarResposta() {
+    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]; // questão atual 
+    const respostaQuestaoAtual = questaoAtual.alternativaCorreta; // resposta correta da questão atual
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+    const options = document.getElementsByName("option"); // recupera alternativas no html
+    let alternativaCorreta = null;
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+    options.forEach((option) => {
+        if (option.value === respostaQuestaoAtual) {
+            alternativaCorreta = option.labels[0].id;
+        }
+    });
 
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
-            }
-        })
+    // Verifica se a resposta está correta ou errada
+    options.forEach((option) => {
+        if (option.checked === true && option.value === respostaQuestaoAtual) {
+            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+            pontuacaoFinal++;
+            certas++;
+            document.getElementById("spanCertas").innerHTML = certas;
+        } else if (option.checked && option.value !== respostaQuestaoAtual) {
+            const wrongLabelId = option.labels[0].id;
 
-        // verifica se resposta assinalada é correta
-        options.forEach((option) => {
-            if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
-            } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
+            document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
+            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+            tentativaIncorreta++;
+            erradas++;
+            document.getElementById("spanErradas").innerHTML = erradas;
+        }
+    });
+    
+    quiz_inserido(); // Envia a resposta logo após a validação.
+}
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
-            }
-        })
-    }
 
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
@@ -351,67 +353,49 @@
         btnTentarNovamente.disabled = false
         btnDashboard.disabled = false
 
+        sessionStorage.setItem("acertos", certas);
+sessionStorage.setItem("erros", erradas);
+
+quiz_inserido(); // Chame a função aqui
+
+
 
     }
     function dashboard() {
 
         window.location.href = "dashboard.html";
     }
-    function quiz_inserido() {
-        var corretaVar = sessionStorage.getItem("acertos")
-        var erradaVar = sessionStorage.getItem("erros")
-        var fkPerguntasVar = 1
-        var fk_usuarioVar = sessionStorage.getItem("ID_USUARIO")
-        
-        
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+   function quiz_inserido() {
+    var corretaVar = certas; // Use a variável certas, não sessionStorage
+    var erradaVar = erradas; // Use a variável erradas, não sessionStorage
+    var fkPerguntasVar = numeroDaQuestaoAtual + 1; // Atualiza o id da pergunta
+    var fk_usuarioVar = sessionStorage.getItem("ID_USUARIO");
 
-        let hasChecked = false
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].checked) {
-                hasChecked = true
-                break
-            }
-        }
+    fetch("/usuarios/quiz_inserido", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            corretaServer: corretaVar,
+            erradoServer: erradaVar,
+            fkPerguntasServer: fkPerguntasVar,
+            fk_usuarioServer: fk_usuarioVar,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-        if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        if (resposta.ok) {
+            alert("Resposta registrada com sucesso!");
         } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
-
-            habilitarAlternativas(false)
-
-            checarResposta()
+            alert("Houve um erro ao registrar a resposta.");
         }
-        --
-            fetch("/usuarios/quiz_inserido", {
-
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    corretaServer: corretaVar,
-                    erradoServer: erradaVar,
-                    fkPerguntasServer: fkPerguntasVar,
-                    fk_usuarioServer: fk_usuarioVar,
-                }),
-            })
-                .then(function (resposta) {
-                    console.log("resposta: ", resposta);
-
-                    if (resposta.ok) {
-                        alert("Resultado inserido");
-                    } else {
-                        alert("Houve um erro ao tentar realizar a inserção");
-                    }
-                })
-                .catch(function (erro) {
-                    console.log("#ERRO: ", erro);
-                });
-    }
-
-
+    })
+    .catch(function (error) {
+        console.log("Erro ao enviar os dados: ", error);
+        alert("Erro ao enviar os dados.");
+    });
+}
 
 </script>

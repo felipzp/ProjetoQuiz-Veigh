@@ -80,7 +80,7 @@ function quiz_inserido(req, res) {
     var fk_usuario = req.body.fk_usuarioServer;
     var fkPerguntas = req.body.fkPerguntasServer;
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.quiz_inserido(fk_usuario, fkPerguntas, correta, errado)
+        usuarioModel.quiz_inserido(correta, errado, fk_usuario, fkPerguntas)
             .then(
                 function (resultado) {
                     res.json(resultado);
