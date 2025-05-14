@@ -9,7 +9,7 @@
 </head>
 
 
-<body onload="onloadEsconder()">    
+<body onload="onloadEsconder()">
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -61,7 +61,7 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Enviar resposta</button>
+                <button onclick="quiz_inserido()" id="btnSubmeter">Enviar resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
@@ -166,7 +166,7 @@
             alternativaCorreta: "alternativaB"
         }
 
-        
+
     ]
 
     // variáveis globais    
@@ -351,35 +351,65 @@
         btnTentarNovamente.disabled = false
         btnDashboard.disabled = false
 
-    
+
     }
-   function dashboard() {
-   
+    function dashboard() {
+
         window.location.href = "dashboard.html";
     }
     function quiz_inserido() {
-         fetch("/usuarios/quiz_inserido", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            corretaServer: corretaVar,
-            erradoServer: erradaVar,
-        }),
-    })
-    .then(function (resposta) {
-        console.log("resposta: ", resposta);
+        var corretaVar = sessionStorage.getItem("acertos")
+        var erradaVar = sessionStorage.getItem("erros")
+        var fkPerguntasVar = 1
+        var fk_usuarioVar = sessionStorage.getItem("ID_USUARIO")
+        
+        
+        const options = document.getElementsByName("option"); // recupera alternativas no html
 
-        if (resposta.ok) {
-            alert("Resultado inserido");
-        } else {
-            alert("Houve um erro ao tentar realizar a inserção");
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
         }
-    })
-    .catch(function (erro) {
-        console.log("#ERRO: ", erro);
-    });
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+        --
+            fetch("/usuarios/quiz_inserido", {
+
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    corretaServer: corretaVar,
+                    erradoServer: erradaVar,
+                    fkPerguntasServer: fkPerguntasVar,
+                    fk_usuarioServer: fk_usuarioVar,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        alert("Resultado inserido");
+                    } else {
+                        alert("Houve um erro ao tentar realizar a inserção");
+                    }
+                })
+                .catch(function (erro) {
+                    console.log("#ERRO: ", erro);
+                });
     }
 
 

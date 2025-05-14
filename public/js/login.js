@@ -32,7 +32,7 @@ function login() {
                 // Salvando no sessionStorage
                 sessionStorage.setItem("EMAIL_USUARIO", json.email);
                 sessionStorage.setItem("NOME_USUARIO", json.nome);
-                sessionStorage.setItem("ID_USUARIO", json.id);
+                sessionStorage.setItem("ID_USUARIO", json.idUsuario);
 
                 // Redirecionando para a página logada
                 window.location = "/indexlogado.html";

@@ -75,11 +75,12 @@ function cadastrar(req, res) {
 
 function quiz_inserido(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var correta = req.body.corretaServer;
+   var correta = req.body.corretaServer;
     var errado = req.body.erradoServer;
-   
+    var fk_usuario = req.body.fk_usuarioServer;
+    var fkPerguntas = req.body.fkPerguntasServer;
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.quiz_inserido(correta, errado)
+        usuarioModel.quiz_inserido(fk_usuario, fkPerguntas, correta, errado)
             .then(
                 function (resultado) {
                     res.json(resultado);

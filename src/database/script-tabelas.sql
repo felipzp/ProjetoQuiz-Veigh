@@ -35,8 +35,7 @@ insert into perguntas_error (pergunta, resposta) values
 ('Em que ano foi lançado a faixa Buchanans?', 'Alterativa B');
 
 
-select * from resultados_quiz;	
-select * from perguntas_error;	
+
 
 select u.nome,
 r.acertos,
@@ -55,3 +54,12 @@ select * from usuarios
     on r.fk_usuario = usuarios.idUsuario
 		join perguntas_error p 
 			on r.fkPerguntas = p.idPergunta;
+            
+select * from resultados_quiz;	
+select * from perguntas_error;	
+select * from usuarios;
+
+desc resultados_quiz;
+desc perguntas_error;
+desc usuarios;
+
