@@ -37,8 +37,8 @@ insert into perguntas_error (pergunta, resposta) values
 
 
 select u.nome,
-r.acertos,
-r.erros,
+r.certas,
+r.erradas,
 p.pergunta,
 p.resposta
 from usuarios u
@@ -54,11 +54,29 @@ select * from usuarios
 		join perguntas_error p 
 			on r.fkPerguntas = p.idPergunta;
             
-select * from resultados_quiz;	
+
+SELECT 
+    u.nome,
+    r.certas,
+    r.erradas
+FROM usuarios u
+JOIN resultados_quiz r ON r.fk_usuario = u.idUsuario
+WHERE r.idResultado IN (
+    SELECT MAX(idResultado)
+    FROM resultados_quiz
+    GROUP BY fk_usuario
+);
+
+            
+select * from resultados_quiz;
+	
+
 select * from perguntas_error;	
 select * from usuarios;
 
 desc resultados_quiz;
 desc perguntas_error;
 desc usuarios;
+
+
 
