@@ -13,7 +13,7 @@
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+        <div id="pontuacao" class="flex-colunar width-fit-content border-primary" style="opacity: 0;">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
                 <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
@@ -179,12 +179,12 @@
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('pontuacao').style.opacity = "0"
         document.getElementById('jogo').style.display = "none"
     }
 
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
+        // document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('btnIniciarQuiz').style.display = "none"
 
@@ -386,11 +386,7 @@ quiz_inserido(); // Chame a função aqui
     .then(function (resposta) {
         console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-            alert("Resposta registrada com sucesso!");
-        } else {
-            alert("Houve um erro ao registrar a resposta.");
-        }
+
     })
     .catch(function (error) {
         console.log("Erro ao enviar os dados: ", error);

@@ -1,6 +1,8 @@
-create database pjindividual;
+-- Projeto Individual Script
 
-use pjindividual;
+create database projeto_individual;
+
+use projeto_individual;
 
 create table usuarios 
     (idUsuario int primary key auto_increment ,
@@ -55,28 +57,31 @@ select * from usuarios
 			on r.fkPerguntas = p.idPergunta;
             
 
-SELECT 
-    u.nome,
-    r.certas,
-    r.erradas
+SELECT u.nome,    
+r.certas,
+r.erradas
 FROM usuarios u
 JOIN resultados_quiz r ON r.fk_usuario = u.idUsuario
 WHERE r.idResultado IN (
-    SELECT MAX(idResultado)
-    FROM resultados_quiz
-    GROUP BY fk_usuario
-);
+SELECT MAX(idResultado)   
+FROM resultados_quiz
+GROUP BY fk_usuario);
 
             
 select * from resultados_quiz;
-	
-
 select * from perguntas_error;	
 select * from usuarios;
+
 
 desc resultados_quiz;
 desc perguntas_error;
 desc usuarios;
+
+show tables;
+
+select 
+
+
 
 
 
