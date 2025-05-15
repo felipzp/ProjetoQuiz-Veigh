@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Veigh</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -32,7 +33,7 @@
 
     let proximaAtualizacao;
 
-    window.onload = obterDadosGrafico();
+    window.onload = obterDadosGrafico(fk_usuario);
 
 
     // O gráfico é construído com três funções:
@@ -102,8 +103,8 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(fk_usuario);
-            dados.datasets[0].data.push(certas);
+            labels.push(registro.fk_usuario);
+            dados.datasets[0].data.push(registro.certas);
           
         }
 
@@ -122,10 +123,9 @@
         };
 
         // Adicionando gráfico criado em div na tela
-        let grafico_veigh = new Chart(
-            document.getElementById(`grafico_veigh`),
-            config
-        );
+     
+        const ctx_ganho = document.getElementById('grafico_veigh').getContext('2d');
+    const grafico_veigh = new Chart(ctx_ganho, config);
 
         setTimeout(() => atualizarGrafico(fk_usuario, dados, grafico_veigh), 2000);
     }
@@ -144,20 +144,19 @@
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterdados(fk_usuario);
+                
                     // alertar(novoRegistro, fk_usuario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${fk_usuario}`)
-                    avisoCaptura.innerHTML = ""
+                   
 
 
                     if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        
                         console.log("Horário do novo dado capturado:")
                         console.log(novoRegistro[0].momento_grafico)
                         console.log("Horário do último dado capturado:")
