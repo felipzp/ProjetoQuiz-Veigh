@@ -356,3 +356,7 @@ section {
     padding-bottom: 0.5rem;
     font-size: 2rem;
 }
+
+.interativo .row .content p {
+    font-size: 30px;
+}
