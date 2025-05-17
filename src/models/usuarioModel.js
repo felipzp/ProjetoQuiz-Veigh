@@ -23,25 +23,26 @@ function cadastrar(nome, email, senha) {
 }
 
 
-/*function quiz_inserido(certas, erradas) {
-     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",);
+
+function quiz_inserido(correta, errado, fk_usuario) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function quiz_inserido():", fk_usuario,  correta, errado);
+
+    var instrucaoSql = `
+        INSERT INTO resultados_quiz (certas, erradas, fk_usuario)
+        VALUES (${correta}, ${errado}, ${fk_usuario});
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function registrar(musica, artista, fk_usuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", musica, artista, fk_usuario);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO resultados_quiz (fk_usuario, fkPerguntas, certas, erradas,) VALUES ('${certas}', '${erradas}' '${fk_usuario}','${fkPerguntas}');
+        INSERT INTO recomendacao (musica, artista, fk_usuario) VALUES ('${musica}', '${artista}', ${fk_usuario});
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}*/
-function quiz_inserido(correta, errado, fk_usuario, fkPerguntas) {
-    console.log("ACESSEI O USUARIO MODEL \n\n function quiz_inserido():", fk_usuario, fkPerguntas, correta, errado);
-
-    var instrucaoSql = `
-        INSERT INTO resultados_quiz (certas, erradas, fk_usuario, fkPerguntas)
-        VALUES (${correta}, ${errado}, ${fk_usuario}, ${fkPerguntas});
-    `;
-
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -50,5 +51,6 @@ function quiz_inserido(correta, errado, fk_usuario, fkPerguntas) {
 module.exports = {
     autenticar,
     cadastrar,
-    quiz_inserido
+    quiz_inserido,
+    registrar
 };

@@ -15,5 +15,10 @@ router.post("/autenticar", function (req, res) {
 router.post("/quiz_inserido", function (req, res) {
     usuarioController.quiz_inserido(req, res);
 });
+router.post("/registrar", function (req, res) {
+    usuarioController.registrar(req, res);
+});
+
+
 
 module.exports = router;

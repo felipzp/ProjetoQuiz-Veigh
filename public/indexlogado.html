@@ -204,37 +204,37 @@
                     </p>
         </section>
 
-       <section class="interativo" id="interativo">
-    <h2 class="title">Recomendações de <span>Músicas</span></h2>
-    <div class="row">
-        <div class="content">
-            <p>Você pode recomendar outras músicas de artistas que você curte. Compartilhe suas sugestões!</p>
+        <section class="interativo" id="interativo">
+            <h2 class="title">Recomendações de <span>Músicas</span></h2>
+            <div class="row">
+                <div class="content">
+                    <p>Você pode recomendar outras músicas de artistas que você curte. Compartilhe suas sugestões!</p>
 
-            <div class="form-group">
-                <label for="ipt_musica">Música:</label>
-                <input type="text" id="ipt_musica" placeholder="Digite o nome da música...">
+                    <div class="form-group">
+                        <label for="ipt_musica">Música:</label>
+                        <input type="text" id="ipt_musica" placeholder="Digite o nome da música...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ipt_artista">Artista:</label>
+                        <input type="text" id="ipt_artista" placeholder="Digite o nome do artista...">
+                    </div>
+
+                    <button class="btn" onclick="registro()">Registrar</button>
+                    <button class="btn" onclick="ver()">Ver registro feito</button>
+                    <button class="btn" onclick="limparTela()">Limpar Tela</button>
+                    <button class="btn" onclick="limparVetores()">Limpar Registros</button>
+
+                    <div id="resultadosRecomendacoes" style="margin-top: 20px;"></div>
+                </div>
+
+                <div class="img-artista">
+                    <img src="../assets/turma_do_pagode.png" alt="Turma do Pagode" style="width: 300px;">
+                    <img src="../assets/cee.png" alt="Cee" style="width: 350px;">
+                    <img src="../assets/ariana2.png" alt="Ariana Grande" style="width: 240px;">
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="ipt_artista">Artista:</label>
-                <input type="text" id="ipt_artista" placeholder="Digite o nome do artista...">
-            </div>
-
-            <button class="btn" onclick="registro()">Registrar</button>
-            <button class="btn" onclick="ver()">Ver registro feito</button>
-            <button class="btn" onclick="limparTela()">Limpar Tela</button>
-            <button class="btn" onclick="limparVetores()">Limpar Registros</button>
-
-            <div id="resultadosRecomendacoes" style="margin-top: 20px;"></div>
-        </div>
-
-        <div class="img-artista">
-            <img src="../assets/turma_do_pagode.png" alt="Turma do Pagode" style="width: 300px;">
-            <img src="../assets/cee.png" alt="Cee" style="width: 350px;">
-            <img src="../assets/ariana2.png" alt="Ariana Grande" style="width: 240px;">
-        </div>
-    </div>
-</section>
+        </section>
 
 
         <script>
@@ -252,24 +252,53 @@
                 window.location.href = 'quiz.html'
 
             }
+          
+            function registro() {
             vt_musica = []
             vt_artista = []
-            function registro() {
-                var musica = ipt_musica.value
-                var artista = ipt_artista.value
+                var musicaVar = document.getElementById("ipt_musica").value.trim();
+                var artistaVar = document.getElementById("ipt_artista").value.trim();
+                var fk_usuarioVar = sessionStorage.getItem("ID_USUARIO");
+           
 
-                if (musica == '' || artista == '') {
+                if (musicaVar == '' || artistaVar == '') {
                     alert("Porfavor insira valores em todos os campos!")
 
                 } else {
-                    vt_musica.push(musica)
-                    vt_artista.push(artista)
+                    vt_musica.push(musicaVar)
+                    vt_artista.push(artistaVar)
                     ipt_artista.value = ''
                     ipt_musica.value = ''
-
                 }
+  fetch("/usuarios/registrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            musicaServer: musicaVar,
+           artistaServer: artistaVar,
+          fk_usuarioServer: fk_usuarioVar,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-            }
+        if (resposta.ok) {
+            alert("Registro enviado com sucesso!!");
+        } else {
+            alert("Houve um erro ao tentar realizar o cadastro!");
+        }
+    })
+    .catch(function (erro) {
+        console.log("#ERRO: ", erro);
+    });
+}
+
+
+                
+
+            
             function ver() {
                 var resultados = document.getElementById("resultadosRecomendacoes")
                 resultados.innerHTML = "";
@@ -294,6 +323,7 @@
                 vt_artista = [];
                 alert("Registros apagados com sucesso!");
             }
+            
 
         </script>
 

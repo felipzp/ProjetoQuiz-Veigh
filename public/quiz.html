@@ -77,21 +77,21 @@
     const listaDeQuestoes = [
 
         {
-            pergunta: "Qual a música mais viral do artista Veigh?",
-            alternativaA: "Novo Balanço",
-            alternativaB: "Vida Chique",
-            alternativaC: "Taylor",
+            pergunta: "De que musica é a frase a seguir: Nunca fui assim e não vou agir como se eu fosse",
+            alternativaA: "invisível.Pt2",
+            alternativaB: "Fumaça",
+            alternativaC: "Historia viva",
             alternativaD: "Nenhuma das alternativas acima",
-            alternativaCorreta: "alternativaA"
+            alternativaCorreta: "alternativaD"
         },
 
         {
-            pergunta: "Qual o nome correto do artista?",
-            alternativaA: "Thiago da Silva",
-            alternativaB: "Thiago Veigh Silva",
-            alternativaC: "Thiago da Silva Veigh",
-            alternativaD: "Thiago Veigh da Silva",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Onde o Veigh nasceu",
+            alternativaA: "Itapevi",
+            alternativaB: "Osasco",
+            alternativaC: "Mogi das cruzes",
+            alternativaD: "Itaquera",
+            alternativaCorreta: "alternativaA"
         },
 
         {
@@ -104,66 +104,66 @@
         },
 
         {
-            pergunta: "Qual foi o primeiro álbum lançado de Veigh?",
-            alternativaA: "EVOM",
-            alternativaB: "Dos prédios",
-            alternativaC: "Menino dos prédios",
-            alternativaD: "Dos prédios Deluxe",
+            pergunta: "Qual dessas músicas não fazem parte do album Dos Prédios Deluxe",
+            alternativaA: "Tendenciosa",
+            alternativaB: "Nois é Nois",
+            alternativaC: "Detalhes",
+            alternativaD: "Turma do bairro (interlúdio)",
             alternativaCorreta: "alternativaB"
         },
 
         {
-            pergunta: "Qual o nome da gravadora em que o Veigh está inserido?",
-            alternativaA: "Mainstreet",
-            alternativaB: "1KILO",
-            alternativaC: "30praum",
-            alternativaD: "Supernova",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual dessas músicas é um feat com o Matuê",
-            alternativaA: "Flow Epacial",
-            alternativaB: "Mar Azul",
-            alternativaC: "Maquina do Tempo",
-            alternativaD: "Nenhuma das alternativas acima",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual dessas falas são características do Veigh",
-            alternativaA: "Dos predios Baby",
-            alternativaB: "Corra atrás do seu sonho",
-            alternativaC: "Viva o extraordinário",
-            alternativaD: "Ainda no mesmo Bairro",
+            pergunta: "Qual o nome da Mãe do Veigh",
+            alternativaA: "Miriam",
+            alternativaB: "Lilyan",
+            alternativaC: "Lilian",
+            alternativaD: "Miryan",
             alternativaCorreta: "alternativaA"
         },
 
         {
-            pergunta: "Qual frase faz parte de uma música do Veigh?",
-            alternativaA: "Meus fãs são tipo fãs da Taylor",
-            alternativaB: "De osasco pro Mundo, eu domino esse beat",
-            alternativaC: "Nenhuma das Alternativas",
-            alternativaD: "A & B",
-            alternativaCorreta: "alternativaA"
+            pergunta: "Qual dessas músicas é mais viral (Spotify)",
+            alternativaA: "Confissões Pt2",
+            alternativaB: "Loucura",
+            alternativaC: "Vem desestressar",
+            alternativaD: "Mandraka",
+            alternativaCorreta: "alternativaB"
         },
 
         {
-            pergunta: "Qual dessas músicas, possui Feat Gringo?",
-            alternativaA: "Invisível.Pt2",
-            alternativaB: "Londres Freestyle",
-            alternativaC: "Vida Chique",
-            alternativaD: "Mônaco Freestyle",
+            pergunta: "Qual a data do lançamento de Dos Predios",
+            alternativaA: "18-10-2022",
+            alternativaB: "18-09-2022",
+            alternativaC: "17-10-2022",
+            alternativaD: "18-11-2022",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual desses artistas Veigh nunca participou de um lançamento",
+            alternativaA: "Mc Davi",
+            alternativaB: "Teto",
+            alternativaC: "Alee",
+            alternativaD: "Todas as cimas nunca aconteceram",
             alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Em que ano foi lançado a faixa Buchanans?",
-            alternativaA: "2020",
-            alternativaB: "2021",
-            alternativaC: "2019",
-            alternativaD: "2022",
+            pergunta: "Qual Data de Nascimento de Veigh ",
+            alternativaA: "1,89 metros",
+            alternativaB: "1,86 metros.",
+            alternativaC: "1,88 metros",
+            alternativaD: "1,87 metros",
             alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Qual altura de Veigh ",
+            alternativaA: "13-09-2001",
+            alternativaB: "11-10-2001",
+            alternativaC: "12-10-2001",
+            alternativaD: "12-09-2001",
+            alternativaCorreta: "alternativaD"
         }
 
 
@@ -174,6 +174,7 @@
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
     let certas = 0
+    let certafinal = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
@@ -245,24 +246,24 @@
 
     }
 
-   function avancar() {
-    btnProx.disabled = true;
-    btnSubmeter.disabled = false;
+    function avancar() {
+        btnProx.disabled = true;
+        btnSubmeter.disabled = false;
 
-    desmarcarRadioButtons(); // Desmarcar as opções selecionadas
+        desmarcarRadioButtons(); // Desmarcar as opções selecionadas
 
-    // Incrementa a questão atual
-    numeroDaQuestaoAtual++;
+        // Incrementa a questão atual
+        numeroDaQuestaoAtual++;
 
-    // Verifica se não é a última questão
-    if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
-        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);  // Atualiza a próxima questão
-    } else {
-        finalizarJogo();  // Caso seja a última questão
+        // Verifica se não é a última questão
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);  // Atualiza a próxima questão
+        } else {
+            finalizarJogo();  // Caso seja a última questão
+        }
+
+        limparCoresBackgroundOpcoes();  // Limpa as cores de fundo das opções
     }
-
-    limparCoresBackgroundOpcoes();  // Limpa as cores de fundo das opções
-}
 
 
     function tentarNovamente() {
@@ -270,39 +271,39 @@
         window.location.reload()
     }
 
-   function checarResposta() {
-    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]; // questão atual 
-    const respostaQuestaoAtual = questaoAtual.alternativaCorreta; // resposta correta da questão atual
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]; // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta; // resposta correta da questão atual
 
-    const options = document.getElementsByName("option"); // recupera alternativas no html
-    let alternativaCorreta = null;
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+        let alternativaCorreta = null;
 
-    options.forEach((option) => {
-        if (option.value === respostaQuestaoAtual) {
-            alternativaCorreta = option.labels[0].id;
-        }
-    });
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                alternativaCorreta = option.labels[0].id;
+            }
+        });
 
-    // Verifica se a resposta está correta ou errada
-    options.forEach((option) => {
-        if (option.checked === true && option.value === respostaQuestaoAtual) {
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
-            pontuacaoFinal++;
-            certas++;
-            document.getElementById("spanCertas").innerHTML = certas;
-        } else if (option.checked && option.value !== respostaQuestaoAtual) {
-            const wrongLabelId = option.labels[0].id;
+        // Verifica se a resposta está correta ou errada
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                pontuacaoFinal++;
+                certas++;
+                document.getElementById("spanCertas").innerHTML = certas;
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id;
 
-            document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
-            tentativaIncorreta++;
-            erradas++;
-            document.getElementById("spanErradas").innerHTML = erradas;
-        }
-    });
-    
-    quiz_inserido(); // Envia a resposta logo após a validação.
-}
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                tentativaIncorreta++;
+                erradas++;
+                document.getElementById("spanErradas").innerHTML = erradas;
+            }
+        });
+
+
+    }
 
 
     function limparCoresBackgroundOpcoes() {
@@ -324,6 +325,7 @@
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não conhece o Veigh :("
@@ -353,10 +355,11 @@
         btnTentarNovamente.disabled = false
         btnDashboard.disabled = false
 
-        sessionStorage.setItem("acertos", certas);
-sessionStorage.setItem("erros", erradas);
+        sessionStorage.setItem("acertos", pontuacaoFinal);
+        sessionStorage.setItem("erros", erradas);
 
-quiz_inserido(); // Chame a função aqui
+
+        quiz_inserido(); // Chame a função aqui
 
 
 
@@ -365,10 +368,9 @@ quiz_inserido(); // Chame a função aqui
 
         window.location.href = "dashboard.html";
     }
-   function quiz_inserido() {
-    var corretaVar = certas; // Use a variável certas, não sessionStorage
-    var erradaVar = erradas; // Use a variável erradas, não sessionStorage
-    var fkPerguntasVar = numeroDaQuestaoAtual + 1; // Atualiza o id da pergunta
+    function quiz_inserido() {
+    var corretaVar = pontuacaoFinal; 
+    var erradaVar = erradas;
     var fk_usuarioVar = sessionStorage.getItem("ID_USUARIO");
 
     fetch("/usuarios/quiz_inserido", {
@@ -379,19 +381,17 @@ quiz_inserido(); // Chame a função aqui
         body: JSON.stringify({
             corretaServer: corretaVar,
             erradoServer: erradaVar,
-            fkPerguntasServer: fkPerguntasVar,
             fk_usuarioServer: fk_usuarioVar,
         }),
     })
     .then(function (resposta) {
         console.log("resposta: ", resposta);
-
-
     })
     .catch(function (error) {
         console.log("Erro ao enviar os dados: ", error);
         alert("Erro ao enviar os dados.");
     });
 }
+
 
 </script>

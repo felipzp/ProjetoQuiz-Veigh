@@ -2,7 +2,7 @@
 
 create database projeto_individual;
 
-use projeto_individual;
+use projeto_indiviual;
 
 create table usuarios 
     (idUsuario int primary key auto_increment ,
@@ -15,26 +15,10 @@ create table resultados_quiz
     certas int,
     erradas int ,
 	fk_usuario int ,
-    fkPerguntas int ,
-    foreign key (fk_usuario) references usuarios(idUsuario),
-    foreign key (fkPerguntas) references perguntas_error(idPergunta));
+    foreign key (fk_usuario) references usuarios(idUsuario));
+ 
     
-create table perguntas_error
-( idPergunta int primary key auto_increment,
-	pergunta varchar(85) not null,
-	resposta varchar(45) not null);
     
-insert into perguntas_error (pergunta, resposta) values
-('Qual a música mais viral do artista Veigh?', 'Alternativa A'),
-('Qual o nome correto do artista?', 'Alterativa D'),
-('Quantos anos veigh tem?', 'Alterativa B'),
-('Qual foi o primeiro álbum lançado de Veigh?', 'Alterativa B'),
-('Qual o nome da gravadora em que o Veigh está inserido?', 'Alterativa D'),
-('Qual dessas músicas é um feat com o Matuê', 'Alterativa D'),
-('Qual dessas falas são características do Veigh?', 'Alterativa A'),
-('Qual frase faz parte de uma música do Veigh?', 'Alterativa A'),
-('Qual dessas músicas, possui Feat Gringo?', 'Alterativa C'),
-('Em que ano foi lançado a faixa Buchanans?', 'Alterativa B');
 
 
 
@@ -65,7 +49,9 @@ JOIN resultados_quiz r ON r.fk_usuario = u.idUsuario
 WHERE r.idResultado IN (
 SELECT MAX(idResultado)   
 FROM resultados_quiz
-GROUP BY fk_usuario);
+GROUP BY fk_usuario)
+and fk_usuario;
+
 
             
 select * from resultados_quiz;
@@ -79,9 +65,15 @@ desc usuarios;
 
 show tables;
 
-select 
 
 
+SELECT * FROM perguntas_error WHERE idPergunta = 11;
 
+
+SELECT r.certas, r.erradas, r.idResultado
+FROM resultados_quiz r
+WHERE r.fk_usuario =3
+ORDER BY r.idResultado DESC
+LIMIT 1;
 
 

@@ -40,9 +40,29 @@ function buscarMedidasEmTempoReal(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+var medidaModel = require("../models/medidaModel");
+
+function buscarMediaAcertos(req, res) {
+    var fk_usuario = req.params.fk_usuario;
+    console.log(`Recuperando a média de acertos do usuário ${fk_usuario}`);
+
+    medidaModel.buscarMediaAcertos(fk_usuario).then(function(resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado[0]);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function(erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar a média de acertos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    buscarMedidasEmTempoReal,
+     buscarMediaAcertos
+ 
 }

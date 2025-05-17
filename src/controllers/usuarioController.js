@@ -78,9 +78,8 @@ function quiz_inserido(req, res) {
    var correta = req.body.corretaServer;
     var errado = req.body.erradoServer;
     var fk_usuario = req.body.fk_usuarioServer;
-    var fkPerguntas = req.body.fkPerguntasServer;
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.quiz_inserido(correta, errado, fk_usuario, fkPerguntas)
+        usuarioModel.quiz_inserido(correta, errado, fk_usuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -96,10 +95,46 @@ function quiz_inserido(req, res) {
                 }
             );
     }
+    function registrar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var musica = req.body.musicaServer;
+    var artista = req.body.artistaServer;
+    var fk_usuario  = req.body.fk_usuarioServer;
+  
+   
+    // Faça as validações dos valores
+    if (musica == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (artista == undefined) {
+        res.status(400).send("Seu email está undefined!");
+         } else if (fk_usuario == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.registrar(musica, artista, fk_usuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 
 
 module.exports = {
     autenticar,
     cadastrar,
-    quiz_inserido
+    quiz_inserido,
+    registrar
 }
