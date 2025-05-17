@@ -2,33 +2,28 @@ var database = require("../database/config");
 
 function buscarUltimasMedidas(fk_usuario) {
     console.log(fk_usuario)
-    var instrucaoSql = `SELECT u.nome,    
-r.certas,
-r.erradas
-FROM usuarios u
-JOIN resultados_quiz r ON r.fk_usuario = u.idUsuario
-WHERE r.idResultado IN (
-SELECT MAX(idResultado)   
-FROM resultados_quiz
-GROUP BY fk_usuario)
-and fk_usuario = ${fk_usuario};`;
+    var instrucaoSql = `
+       SELECT r.certas, r.erradas, r.idResultado
+FROM resultados_quiz r
+WHERE r.fk_usuario = ${fk_usuario}
+ORDER BY r.idResultado DESC
+LIMIT 1;
+;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarMedidasEmTempoReal(fk_usuario) {
-
-    var instrucaoSql = `SELECT u.nome,    
-r.certas,
-r.erradas
-FROM usuarios u
-JOIN resultados_quiz r ON r.fk_usuario = u.idUsuario
-WHERE r.idResultado IN (
-SELECT MAX(idResultado)   
-FROM resultados_quiz
-GROUP BY fk_usuario)
-and fk_usuario = ${fk_usuario};`;
+    var instrucaoSql = `
+       SELECT r.certas, r.erradas, r.idResultado
+FROM resultados_quiz r
+WHERE r.fk_usuario = ${fk_usuario}
+ORDER BY r.idResultado DESC
+LIMIT 1;
+;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
