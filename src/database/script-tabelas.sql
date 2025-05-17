@@ -2,7 +2,8 @@
 
 create database projeto_individual;
 
-use projeto_indiviual;
+
+use projeto_individual;
 
 create table usuarios 
     (idUsuario int primary key auto_increment ,
@@ -17,63 +18,45 @@ create table resultados_quiz
 	fk_usuario int ,
     foreign key (fk_usuario) references usuarios(idUsuario));
  
-    
+Create table recomendacao(
+idRecomendacao int primary key auto_increment,
+musica varchar(45),
+artista varchar(45),
+fk_usuario int ,
+foreign key (fk_usuario) references usuarios(idUsuario));
     
 
 
 
 select u.nome,
 r.certas,
-r.erradas,
-p.pergunta,
-p.resposta
+r.erradas
 from usuarios u
 	join resultados_quiz r
-    on r.fk_usuario = u.idUsuario
-		join perguntas_error p 
-			on r.fkPerguntas = p.idPergunta;
+    on r.fk_usuario = u.idUsuario;
+		
 
-
-select * from usuarios
-	join resultados_quiz r
-    on r.fk_usuario = usuarios.idUsuario
-		join perguntas_error p 
-			on r.fkPerguntas = p.idPergunta;
-            
-
-SELECT u.nome,    
-r.certas,
-r.erradas
-FROM usuarios u
-JOIN resultados_quiz r ON r.fk_usuario = u.idUsuario
-WHERE r.idResultado IN (
-SELECT MAX(idResultado)   
-FROM resultados_quiz
-GROUP BY fk_usuario)
-and fk_usuario;
-
+		drop table resultados_quiz;
 
             
 select * from resultados_quiz;
-select * from perguntas_error;	
+select * from recomendacao;
 select * from usuarios;
 
 
 desc resultados_quiz;
-desc perguntas_error;
 desc usuarios;
 
 show tables;
 
 
-
-SELECT * FROM perguntas_error WHERE idPergunta = 11;
-
-
 SELECT r.certas, r.erradas, r.idResultado
 FROM resultados_quiz r
-WHERE r.fk_usuario =3
+WHERE r.fk_usuario 
 ORDER BY r.idResultado DESC
-LIMIT 1;
-
+LIMIT 5;
+ 
+  SELECT AVG(certas) AS media_acertos
+        FROM resultados_quiz
+        group by fk_usuario;
 
