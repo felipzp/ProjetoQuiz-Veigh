@@ -1,8 +1,16 @@
-Olá!!, seja bem vindo ao meu projeto, eu estou criando uma website com formulário de cadastro, e um quiz para os usuários terem uam interação com o site, é um projeto da minha faculdade, onde eu posso juntar minha paixão por tecnologia com um tema que eu domino e me inspira muito, abaixo um preview do meu projeto!
+Projeto Quiz Interativo sobre Veigh
+Este projeto é um site interativo desenvolvido como parte do meu aprendizado no curso de Sistemas de Informação. O objetivo principal é criar um quiz sobre o cantor Veigh, um artista que se tornou uma grande inspiração para mim, tanto pela sua música quanto pelas mensagens motivacionais que transmite.
+
+O site permite que os usuários façam um cadastro simples e respondam a perguntas sobre a carreira, músicas e trajetória do Veigh. Ao final, o sistema mostra a pontuação obtida e guarda os resultados para visualização em um dashboard com estatísticas.
+
+Este projeto une minha paixão pela tecnologia e pela música, além de ser um desafio pessoal que me ajudou a evoluir em programação web, banco de dados e organização de código. Foi desenvolvido com tecnologias como HTML, CSS, JavaScript, Node.js e MySQL.
+
+Espero que este quiz não só teste conhecimentos, mas também motive outras pessoas a conhecerem e se inspirarem com a história do Veigh.
+
+
 
 
 Modelagem de Dados do meu Projeto abaixo:
-
 
 
 
