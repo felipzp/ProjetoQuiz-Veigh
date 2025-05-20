@@ -1,4 +1,5 @@
 Projeto Quiz Interativo sobre Veigh
+
 Este projeto é um site interativo desenvolvido como parte do meu aprendizado no curso de Sistemas de Informação. O objetivo principal é criar um quiz sobre o cantor Veigh, um artista que se tornou uma grande inspiração para mim, tanto pela sua música quanto pelas mensagens motivacionais que transmite.
 
 O site permite que os usuários façam um cadastro simples e respondam a perguntas sobre a carreira, músicas e trajetória do Veigh. Ao final, o sistema mostra a pontuação obtida e guarda os resultados para visualização em um dashboard com estatísticas.
