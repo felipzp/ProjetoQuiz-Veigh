@@ -52,7 +52,21 @@ Curiosidades:
 
 
 
+
+
+
+
+Documentação do meu Projeto:
+[Documentação Projeto Individual pronta.docx](https://github.com/user-attachments/files/20527046/Documentacao.Projeto.Individual.pronta.docx)
+
+
+
+
+
+
+
 Tecnologias Utilizadas:
+
 
 
 
